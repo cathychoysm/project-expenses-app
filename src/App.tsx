@@ -1,25 +1,39 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { VStack } from "@chakra-ui/react";
+import React, { ReactElement, useState } from "react";
+import SummaryHeader from "./components/SummaryHeader";
+import ViewNavigation from "./components/ViewNavigation";
+import Timeline from "./components/Timeline";
+import Category from "./components/Category";
+import Analytics from "./components/Analytics";
 
 function App() {
+  const [view, setView] = useState("Timeline");
+
+  function ViewShown(): ReactElement {
+    switch (view) {
+      case "Timeline":
+        return <Timeline />;
+      case "Category":
+        return <Category />;
+      case "Analytics":
+        return <Analytics />;
+      default:
+        return <Timeline />;
+    }
+  }
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <VStack
+      bg="yellow.100"
+      minH="100vh"
+      paddingY="50px"
+      paddingX="10vw"
+      gap="30px"
+    >
+      <SummaryHeader />
+      <ViewNavigation setView={setView} />
+      <ViewShown />
+    </VStack>
   );
 }
 
