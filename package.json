@@ -1,58 +1,62 @@
 {
-  "name": "project-expenses-app",
-  "version": "0.1.0",
-  "private": true,
-  "dependencies": {
-    "@chakra-ui/icons": "^2.1.1",
-    "@chakra-ui/react": "^2.8.2",
-    "@emotion/react": "^11.11.4",
-    "@emotion/styled": "^11.11.0",
-    "@mui/material": "^5.15.13",
-    "@mui/styled-engine-sc": "^6.0.0-alpha.17",
-    "@mui/x-charts": "^6.19.5",
-    "@testing-library/jest-dom": "^5.14.1",
-    "@testing-library/react": "^13.0.0",
-    "@testing-library/user-event": "^13.2.1",
-    "@types/jest": "^27.0.1",
-    "@types/node": "^16.7.13",
-    "@types/react": "^18.0.0",
-    "@types/react-dom": "^18.0.0",
-    "formik": "^2.4.5",
-    "framer-motion": "^11.0.8",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0",
-    "react-scripts": "5.0.1",
-    "styled-components": "^6.1.8",
-    "typescript": "^4.4.2",
-    "uuid": "^9.0.1",
-    "web-vitals": "^2.1.0",
-    "yup": "^1.4.0"
-  },
-  "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
-  },
-  "eslintConfig": {
-    "extends": [
-      "react-app",
-      "react-app/jest"
-    ]
-  },
-  "browserslist": {
-    "production": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all"
-    ],
-    "development": [
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 safari version"
-    ]
-  },
-  "devDependencies": {
-    "@types/uuid": "^9.0.8"
-  }
+	"homepage": "http://cathychoysm.github.io/project-expenses-app",
+	"name": "project-expenses-app",
+	"version": "0.1.0",
+	"private": true,
+	"dependencies": {
+		"@chakra-ui/icons": "^2.1.1",
+		"@chakra-ui/react": "^2.8.2",
+		"@emotion/react": "^11.11.4",
+		"@emotion/styled": "^11.11.0",
+		"@mui/material": "^5.15.13",
+		"@mui/styled-engine-sc": "^6.0.0-alpha.17",
+		"@mui/x-charts": "^6.19.5",
+		"@testing-library/jest-dom": "^5.14.1",
+		"@testing-library/react": "^13.0.0",
+		"@testing-library/user-event": "^13.2.1",
+		"@types/jest": "^27.0.1",
+		"@types/node": "^16.7.13",
+		"@types/react": "^18.0.0",
+		"@types/react-dom": "^18.0.0",
+		"formik": "^2.4.5",
+		"framer-motion": "^11.0.8",
+		"react": "^18.2.0",
+		"react-dom": "^18.2.0",
+		"react-scripts": "5.0.1",
+		"styled-components": "^6.1.8",
+		"typescript": "^4.4.2",
+		"uuid": "^9.0.1",
+		"web-vitals": "^2.1.0",
+		"yup": "^1.4.0"
+	},
+	"scripts": {
+		"start": "react-scripts start",
+		"predeploy": "npm run build",
+		"deploy": "gh-pages -d build",
+		"build": "react-scripts build",
+		"test": "react-scripts test",
+		"eject": "react-scripts eject"
+	},
+	"eslintConfig": {
+		"extends": [
+			"react-app",
+			"react-app/jest"
+		]
+	},
+	"browserslist": {
+		"production": [
+			">0.2%",
+			"not dead",
+			"not op_mini all"
+		],
+		"development": [
+			"last 1 chrome version",
+			"last 1 firefox version",
+			"last 1 safari version"
+		]
+	},
+	"devDependencies": {
+		"@types/uuid": "^9.0.8",
+		"gh-pages": "^6.1.1"
+	}
 }
