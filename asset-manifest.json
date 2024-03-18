@@ -1,10 +1,10 @@
 {
   "files": {
-    "main.js": "/project-expenses-app/static/js/main.61973083.js",
+    "main.js": "/project-expenses-app/static/js/main.2a73a357.js",
     "index.html": "/project-expenses-app/index.html",
-    "main.61973083.js.map": "/project-expenses-app/static/js/main.61973083.js.map"
+    "main.2a73a357.js.map": "/project-expenses-app/static/js/main.2a73a357.js.map"
   },
   "entrypoints": [
-    "static/js/main.61973083.js"
+    "static/js/main.2a73a357.js"
   ]
 }
