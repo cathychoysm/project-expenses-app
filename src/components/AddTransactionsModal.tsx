@@ -23,11 +23,9 @@ import { useFormik } from "formik";
 import useTransactions from "../contexts/TransactionsContext";
 import AddCategoryModal from "./AddCategoryModal";
 import * as Yup from "yup";
+import { Type } from "../react-app-env";
 
-interface AddExpensesProps {
-  type: "expenses" | "incomes";
-}
-export default function AddTransactionsModal({ type }: AddExpensesProps) {
+export default function AddTransactionsModal({ type }: Type) {
   const { addExpenses, addIncomes, expensesCategories, incomesCategories } =
     useTransactions();
   const { isOpen, onOpen, onClose } = useDisclosure();
@@ -108,7 +106,7 @@ export default function AddTransactionsModal({ type }: AddExpensesProps) {
                       {formik.values.category}
                     </MenuButton>
                     <MenuList>
-                      {categoriesAsc.map((category) => {
+                      {categoriesAsc.map((category: string) => {
                         return (
                           <MenuItem
                             key={category}

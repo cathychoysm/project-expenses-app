@@ -1,17 +1,7 @@
-import {
-  Box,
-  Center,
-  HStack,
-  UseRadioProps,
-  useRadio,
-  useRadioGroup,
-} from "@chakra-ui/react";
-import { ReactElement } from "react";
+import { Box, Center, HStack, useRadio, useRadioGroup } from "@chakra-ui/react";
+import { RadioCardProps, ViewNavigationProps } from "../react-app-env";
 
-interface RadioCardProps extends UseRadioProps {
-  children: string;
-}
-function RadioCard(props: RadioCardProps): ReactElement {
+function RadioCard(props: RadioCardProps) {
   const { getInputProps, getRadioProps } = useRadio(props);
 
   const input = getInputProps();
@@ -28,15 +18,12 @@ function RadioCard(props: RadioCardProps): ReactElement {
         borderRadius={10}
         _checked={{ bg: "orange", fontWeight: "700" }}
         _focus={{ bg: "orange", fontWeight: "700" }}
+        fontSize={{ base: "sm", md: "md" }}
       >
         {props.children}
       </Center>
     </Box>
   );
-}
-
-interface ViewNavigationProps {
-  setView: React.Dispatch<React.SetStateAction<string>>;
 }
 
 export default function ViewNavigation({ setView }: ViewNavigationProps) {

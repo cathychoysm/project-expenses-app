@@ -11,27 +11,7 @@ import {
 } from "@chakra-ui/react";
 import useTransactions from "../contexts/TransactionsContext";
 import { useState } from "react";
-import { FormikErrors } from "formik";
-
-interface AddCategoryModalProps {
-  type: "expenses" | "incomes";
-  isOpen: boolean;
-  onClose: () => void;
-  setValue: (
-    field: string,
-    value: any,
-    shouldValidate?: boolean | undefined
-  ) =>
-    | Promise<void>
-    | Promise<
-        FormikErrors<{
-          date: string;
-          category: string;
-          description: string;
-          amount: number;
-        }>
-      >;
-}
+import { AddCategoryModalProps } from "../react-app-env";
 
 export default function AddCategoryModal({
   type,

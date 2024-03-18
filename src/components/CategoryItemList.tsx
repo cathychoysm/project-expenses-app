@@ -13,33 +13,43 @@ import RemoveTransaction from "./RemoveTransaction";
 import {
   Transactions,
   Type,
-  transactionDatesGroupsObject,
+  transactionCategorieGroupsObject,
 } from "../react-app-env";
 
-export default function TimelineItemList({ type }: Type) {
+export default function CategoryItemList({ type }: Type) {
   const { expenses, incomes } = useTransactions();
 
   const transactions = type === "expenses" ? expenses : incomes;
 
-  const transactionDatesMap = new Map();
+  const transactionCategoryMap = new Map();
   for (var i = 0; i < transactions.length; i++) {
-    const itemsArray = transactionDatesMap.get(transactions[i].date);
-    if (!transactionDatesMap.has(transactions[i].date)) {
-      transactionDatesMap.set(transactions[i].date, [transactions[i]]);
+    const itemsArray = transactionCategoryMap.get(transactions[i].category);
+    if (!transactionCategoryMap.has(transactions[i].category)) {
+      transactionCategoryMap.set(transactions[i].category, [transactions[i]]);
     } else {
       itemsArray.push(transactions[i]);
-      transactionDatesMap.set(transactions[i].date, itemsArray);
+      transactionCategoryMap.set(transactions[i].category, itemsArray);
     }
   }
 
-  const transactionDatesGrouped = Array.from(transactionDatesMap)
-    .map(([date, items]) => ({ date, items }))
-    .sort((a: transactionDatesGroupsObject, b: transactionDatesGroupsObject) =>
+  const transactionCategoriesGrouped = Array.from(transactionCategoryMap)
+    .map(([category, items]) => ({ category, items }))
+    .sort(
+      (
+        a: transactionCategorieGroupsObject,
+        b: transactionCategorieGroupsObject
+      ) => a.category.localeCompare(b.category)
+    );
+
+  transactionCategoriesGrouped.forEach((category) => {
+    category.items.sort((a: Transactions, b: Transactions) =>
       b.date.localeCompare(a.date)
     );
+  });
 
   return (
     <VStack
+      width="full"
       bg="yellow.200"
       padding={{ base: "15px", md: "30px" }}
       borderRadius={10}
@@ -53,17 +63,17 @@ export default function TimelineItemList({ type }: Type) {
         </Text>
       )}
 
-      {transactionDatesGrouped.map((dateGroup) => {
+      {transactionCategoriesGrouped.map((categoryGroup) => {
         return (
-          <VStack width="full" key={dateGroup.date}>
+          <VStack width="full" key={categoryGroup.category}>
             <Heading
               as="h3"
               size={{ base: "sm", md: "md" }}
               alignSelf="flex-start"
             >
-              {dateGroup.date}
+              {categoryGroup.category}
             </Heading>
-            {dateGroup.items.map((item: Transactions) => {
+            {categoryGroup.items.map((item: Transactions) => {
               return (
                 <Card key={item.id} width="full" padding={2}>
                   <HStack justifyItems="flex-start">
@@ -74,7 +84,7 @@ export default function TimelineItemList({ type }: Type) {
                     >
                       <VStack gap={3} alignItems="flex-start">
                         <Heading size={{ base: "xs", md: "sm" }}>
-                          {item.category}
+                          {item.date}
                         </Heading>
                         <Text fontSize="sm">{item.description}</Text>
                       </VStack>

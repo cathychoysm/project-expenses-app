@@ -8,22 +8,23 @@ export default function Timeline() {
       align="center"
       colorScheme="yellow"
       width="full"
-      minH={800}
+      minH={{ md: 800 }}
       bg="yellow.300"
-      padding={30}
+      paddingX={{ base: "0px", md: "30px" }}
+      paddingY={{ base: "10px", md: "30px" }}
       borderRadius={10}
     >
       <TabList>
-        <Tab>Expenses</Tab>
-        <Tab>Incomes</Tab>
+        <Tab fontSize={{ base: "sm", md: "md" }}>Expenses</Tab>
+        <Tab fontSize={{ base: "sm", md: "md" }}>Incomes</Tab>
       </TabList>
 
       <TabPanels>
         <TabPanel>
-          <TimelineItemList tab="expenses" />
+          <TimelineItemList type="expenses" />
         </TabPanel>
         <TabPanel>
-          <TimelineItemList tab="incomes" />
+          <TimelineItemList type="incomes" />
         </TabPanel>
       </TabPanels>
     </Tabs>

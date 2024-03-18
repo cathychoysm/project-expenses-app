@@ -1,4 +1,4 @@
-import { VStack } from "@chakra-ui/react";
+import { Center, VStack } from "@chakra-ui/react";
 import React, { ReactElement, useState } from "react";
 import SummaryHeader from "./components/SummaryHeader";
 import ViewNavigation from "./components/ViewNavigation";
@@ -23,17 +23,18 @@ function App() {
   }
 
   return (
-    <VStack
+    <Center
       bg="yellow.100"
       minH="100vh"
-      paddingY="50px"
-      paddingX="10vw"
-      gap="30px"
+      width="100vw"
+      padding={{ base: 2, md: 10 }}
     >
-      <SummaryHeader />
-      <ViewNavigation setView={setView} />
-      <ViewShown />
-    </VStack>
+      <VStack minW="100px" maxW="800px" gap={{ base: "10px", md: "30px" }}>
+        <SummaryHeader />
+        <ViewNavigation setView={setView} />
+        <ViewShown />
+      </VStack>
+    </Center>
   );
 }
 
