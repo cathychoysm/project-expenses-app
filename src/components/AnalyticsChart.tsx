@@ -48,10 +48,14 @@ export default function AnalyticsChart({ type }: Type) {
               highlightScope: { faded: "global", highlighted: "item" },
               valueFormatter: (item) => `$${item.value.toFixed(2)}`,
               arcLabel: (item) => `${((item.value / total) * 100).toFixed(0)}%`,
+              cy: "40%",
             },
           ]}
           slotProps={{
-            legend: { position: { horizontal: "middle", vertical: "bottom" } },
+            legend: {
+              position: { horizontal: "middle", vertical: "bottom" },
+              direction: "row",
+            },
           }}
           margin={{ bottom: 0, left: 0, right: 0, top: 0 }}
         />
