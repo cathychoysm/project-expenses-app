@@ -16,27 +16,28 @@ export interface TransactionsContextType {
 	categoryExpensesTotals: Array<Obect>;
 	categoryIncomesTotals: Array<Obect>;
 	// functions
-	addExpenses: ({
+	addTransactions: (type: TypeString,{
+    date,
+    category,
+    description,
+    amount,
+  }: TransactionsFormValues) => void;
+	removeTransactions: (type: TypeString, id: string) => void;
+	editTransactions: (type: TypeString,{
+		id,
 		date,
 		category,
 		description,
 		amount,
-	}: TransactionsFormValues) => void;
-	addIncomes: ({
-		date,
-		category,
-		description,
-		amount,
-	}: TransactionsFormValues) => void;
-	removeExpenses: (id: string) => void;
-	removeIncomes: (id: string) => void;
-	addExpensesCategories: (category: string) => void;
-	addIncomesCategories: (category: string) => void;
+	}: Transactions) => void;
+	addTransactionsCategories: (type: TypeString, category: string) => void;
 }
 
 export interface TransactionsProviderProps {
   children: ReactElement;
 }
+
+export type TypeString = "expenses" | "incomes";
 
 // Summary Header
 export interface TotalCardProps {

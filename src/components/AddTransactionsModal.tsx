@@ -26,7 +26,7 @@ import * as Yup from "yup";
 import { Type } from "../react-app-env";
 
 export default function AddTransactionsModal({ type }: Type) {
-  const { addExpenses, addIncomes, expensesCategories, incomesCategories } =
+  const { addTransactions, expensesCategories, incomesCategories } =
     useTransactions();
   const { isOpen, onOpen, onClose } = useDisclosure();
   const {
@@ -56,19 +56,12 @@ export default function AddTransactionsModal({ type }: Type) {
     }),
     onSubmit: (values) => {
       onClose();
-      type === "expenses"
-        ? addExpenses({
-            date: values.date,
-            category: values.category,
-            description: values.description,
-            amount: values.amount,
-          })
-        : addIncomes({
-            date: values.date,
-            category: values.category,
-            description: values.description,
-            amount: values.amount,
-          });
+      addTransactions(type, {
+        date: values.date,
+        category: values.category,
+        description: values.description,
+        amount: values.amount,
+      });
       formik.resetForm();
     },
   });

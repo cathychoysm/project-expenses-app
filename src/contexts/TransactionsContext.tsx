@@ -6,6 +6,7 @@ import {
   TransactionsContextType,
   TransactionsFormValues,
   TransactionsProviderProps,
+  TypeString,
 } from "../react-app-env";
 
 const TransactionsContext = createContext<TransactionsContextType>({
@@ -21,12 +22,10 @@ const TransactionsContext = createContext<TransactionsContextType>({
   categoryExpensesTotals: [],
   categoryIncomesTotals: [],
   // functions
-  addExpenses: () => {},
-  addIncomes: () => {},
-  removeExpenses: () => {},
-  removeIncomes: () => {},
-  addExpensesCategories: () => {},
-  addIncomesCategories: () => {},
+  addTransactions: () => {},
+  removeTransactions: () => {},
+  editTransactions: () => {},
+  addTransactionsCategories: () => {},
 });
 
 export default function useTransactions() {
@@ -117,54 +116,52 @@ export const TransactionsProvider = ({
     })
   );
 
-  function addExpenses({
-    date,
-    category,
-    description,
-    amount,
-  }: TransactionsFormValues): void {
-    setExpenses((prevExpenses: Array<Transactions>) => {
+  const setTransactions = { expenses: setExpenses, incomes: setIncomes };
+
+  function addTransactions(
+    type: TypeString,
+    { date, category, description, amount }: TransactionsFormValues
+  ): void {
+    setTransactions[type]((prevTransactions: Array<Transactions>) => {
       return [
-        ...prevExpenses,
+        ...prevTransactions,
         { id: uuidv4(), date, category, description, amount },
       ];
     });
   }
 
-  function addIncomes({
-    date,
-    category,
-    description,
-    amount,
-  }: TransactionsFormValues): void {
-    setIncomes((prevIncomes: Array<Transactions>) => {
-      return [
-        ...prevIncomes,
-        { id: uuidv4(), date, category, description, amount },
-      ];
+  function removeTransactions(type: TypeString, id: string): void {
+    setTransactions[type]((prevTransactions: Array<Transactions>) => {
+      return prevTransactions.filter((transaction) => transaction.id !== id);
     });
   }
 
-  function removeExpenses(id: string): void {
-    setExpenses((prevExpenses: Array<Transactions>) => {
-      return prevExpenses.filter((expense) => expense.id !== id);
+  function editTransactions(
+    type: TypeString,
+    { id, date, category, description, amount }: Transactions
+  ) {
+    setTransactions[type]((prevTransactions: Array<Transactions>) => {
+      const index = prevTransactions.findIndex(
+        (transaction) => transaction.id === id
+      );
+      prevTransactions[index] = {
+        id: id,
+        date: date,
+        category: category,
+        description: description,
+        amount: amount,
+      };
+      return prevTransactions;
     });
   }
 
-  function removeIncomes(id: string): void {
-    setIncomes((prevIncomes: Array<Transactions>) => {
-      return prevIncomes.filter((income) => income.id !== id);
-    });
-  }
+  const setTransactionsCategories = {
+    expenses: setExpensesCategories,
+    incomes: setIncomesCategories,
+  };
 
-  function addExpensesCategories(category: string): void {
-    setExpensesCategories((prevCategories: Array<string>) => {
-      return [...prevCategories, category];
-    });
-  }
-
-  function addIncomesCategories(category: string): void {
-    setIncomesCategories((prevCategories: Array<string>) => {
+  function addTransactionsCategories(type: TypeString, category: string): void {
+    setTransactionsCategories[type]((prevCategories: Array<string>) => {
       return [...prevCategories, category];
     });
   }
@@ -184,12 +181,10 @@ export const TransactionsProvider = ({
         categoryExpensesTotals,
         categoryIncomesTotals,
         // functions
-        addExpenses,
-        addIncomes,
-        removeExpenses,
-        removeIncomes,
-        addExpensesCategories,
-        addIncomesCategories,
+        addTransactions,
+        removeTransactions,
+        editTransactions,
+        addTransactionsCategories,
       }}
     >
       {children}

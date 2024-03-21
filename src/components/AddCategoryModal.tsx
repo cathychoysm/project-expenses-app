@@ -19,13 +19,11 @@ export default function AddCategoryModal({
   onClose,
   setValue,
 }: AddCategoryModalProps) {
-  const { addExpensesCategories, addIncomesCategories } = useTransactions();
+  const { addTransactionsCategories } = useTransactions();
 
   const [newCat, setNewCat] = useState<string>("");
   function onClick() {
-    type === "expenses"
-      ? addExpensesCategories(newCat)
-      : addIncomesCategories(newCat);
+    addTransactionsCategories(type, newCat);
     onClose();
     setNewCat("");
     setValue("category", newCat);
