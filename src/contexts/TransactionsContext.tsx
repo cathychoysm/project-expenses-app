@@ -151,7 +151,7 @@ export const TransactionsProvider = ({
         description: description,
         amount: amount,
       };
-      return prevTransactions;
+      return [...prevTransactions];
     });
   }
 

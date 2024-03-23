@@ -15,6 +15,7 @@ import {
   Type,
   transactionDatesGroupsObject,
 } from "../react-app-env";
+import EditTransactionsModal from "./EditTransactionsModal";
 
 export default function TimelineItemList({ type }: Type) {
   const { expenses, incomes } = useTransactions();
@@ -23,12 +24,10 @@ export default function TimelineItemList({ type }: Type) {
 
   const transactionDatesMap = new Map();
   for (var i = 0; i < transactions.length; i++) {
-    const itemsArray = transactionDatesMap.get(transactions[i].date);
     if (!transactionDatesMap.has(transactions[i].date)) {
       transactionDatesMap.set(transactions[i].date, [transactions[i]]);
     } else {
-      itemsArray.push(transactions[i]);
-      transactionDatesMap.set(transactions[i].date, itemsArray);
+      transactionDatesMap.get(transactions[i].date).push(transactions[i]);
     }
   }
 
@@ -88,7 +87,10 @@ export default function TimelineItemList({ type }: Type) {
                       </Text>
                     </CardBody>
                     <CardFooter padding={{ base: 2, md: 5 }}>
-                      <RemoveTransaction type={type} id={item.id} />
+                      <HStack gap={1}>
+                        <EditTransactionsModal type={type} id={item.id} />
+                        <RemoveTransaction type={type} id={item.id} />
+                      </HStack>
                     </CardFooter>
                   </HStack>
                 </Card>

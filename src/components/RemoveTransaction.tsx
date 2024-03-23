@@ -10,13 +10,13 @@ import {
 } from "@chakra-ui/react";
 import { useRef } from "react";
 import useTransactions from "../contexts/TransactionsContext";
-import { RemoveTransactionProps } from "../react-app-env";
+import { EditRemoveTransactionProps } from "../react-app-env";
 import { DeleteIcon } from "@chakra-ui/icons";
 
 export default function RemoveTransaction({
   type,
   id,
-}: RemoveTransactionProps) {
+}: EditRemoveTransactionProps) {
   const { removeTransactions } = useTransactions();
   const { isOpen, onOpen, onClose } = useDisclosure();
   const cancelRef = useRef<HTMLButtonElement>(null);

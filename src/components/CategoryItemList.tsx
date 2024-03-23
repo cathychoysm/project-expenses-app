@@ -15,6 +15,7 @@ import {
   Type,
   transactionCategorieGroupsObject,
 } from "../react-app-env";
+import EditTransactionsModal from "./EditTransactionsModal";
 
 export default function CategoryItemList({ type }: Type) {
   const { expenses, incomes } = useTransactions();
@@ -98,7 +99,10 @@ export default function CategoryItemList({ type }: Type) {
                       </Text>
                     </CardBody>
                     <CardFooter padding={{ base: 2, md: 5 }}>
-                      <RemoveTransaction type={type} id={item.id} />
+                      <HStack gap={1}>
+                        <EditTransactionsModal type={type} id={item.id} />
+                        <RemoveTransaction type={type} id={item.id} />
+                      </HStack>
                     </CardFooter>
                   </HStack>
                 </Card>

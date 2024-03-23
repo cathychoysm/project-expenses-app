@@ -101,7 +101,7 @@ export interface transactionCategorieGroupsObject {
 	items: Array<Object>;
 }
 
-export interface RemoveTransactionProps {
+export interface EditRemoveTransactionProps {
   type: "expenses" | "incomes";
   id: string;
 }
